@@ -36,6 +36,7 @@ Inspired by the cosmos and NASA’s incredible imagery of our planets and solar 
 - AWS RDS, Cloud Based Distributed Relational Database Service
 - EC2, AWS Hosting Environment
 - S3, AWS Storage
+- Jenkins, Pipeline and Code Automation
 - JUnit, Unit Testing Framework
 - Log4j, Logging Utility
 
