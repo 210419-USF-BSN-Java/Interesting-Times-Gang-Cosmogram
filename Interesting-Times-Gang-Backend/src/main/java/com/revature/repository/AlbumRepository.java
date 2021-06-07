@@ -1,4 +1,4 @@
-///*
+//
 package com.revature.repository;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import com.revature.model.Image;
 
 @Repository
 @Transactional
-public interface AlbumRepository extends JpaRepository<Album, Long>{
+public interface AlbumRepository extends JpaRepository<Album, Long> {
 	public List<Album> findAlbumsByUserId(Integer id);
 }
-//*/
+//

@@ -1,0 +1,9 @@
+<div>
+    <h3 (click)="showThisToolbox()">{{ title }}</h3>
+    <div *ngIf="selectedToolbox === title" class="div-tool-content">
+        <div *ngFor="let tool of toolbox">
+            <!-- add a click here -->
+            <h6 class="div-content" (click)="startPassingTool(tool)">{{ tool.title }}</h6>
+        </div>
+    </div>
+</div>

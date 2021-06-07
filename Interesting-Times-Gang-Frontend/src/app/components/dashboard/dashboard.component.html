@@ -1,0 +1,45 @@
+<div class="div-outter-wrapper-header-main">
+    <div class="div-top-dash-wrapper">
+        <div class="div-inner-wrapper-header-main">
+            <h1 class="h1-main-header">Cosmogram</h1>
+        </div>
+        <!-- <app-navbar (emitComponentName)="changeComponent($event)"></app-navbar> -->
+        <app-navbar (giveDashboardTool)="dashboardAcceptTool($event)"></app-navbar>
+    </div>
+    <!-- <app-search-image-date></app-search-image-date> 
+        
+        ^^^^ SEARCH BY DATE ^^^^ -->
+
+    <!-- <app-search-image-range></app-search-image-range>
+
+        ^^^^ SEARCH BY RANGE ^^^^ -->
+
+    <!-- <app-search-image-random></app-search-image-random>
+
+        ^^^^ SEARCH BY RANDOM ^^^^ -->
+
+    <div [ngSwitch]="currentComponent" class="div-body-main">
+        <!-- <button (click)="showImage()">clicky</button> -->
+        <div *ngSwitchCase="'default'">
+            <app-single-image *ngIf="currentDayImg" [image]="currentDayImg"></app-single-image>
+            <!-- <app-single-image [image]="img"></app-single-image> -->
+        </div>
+        <!-- <div *ngSwitchCase="'Tags'">
+            <app-search-image></app-search-image>
+        </div> -->
+        <div *ngSwitchCase="'Date'">
+            <app-search-image-date></app-search-image-date>
+        </div>
+        <div *ngSwitchCase="'Range'">
+            <app-search-image-range></app-search-image-range>
+        </div>
+        <div *ngSwitchCase="'Random'">
+            <app-search-image-random></app-search-image-random>
+        </div>
+        <!-- MAKE DOUBLY SURE THAT THIS GOES ON THE BOTTOM OF THIS LIST-->
+        <div *ngIf="currentComponentAlbum">
+            <app-multi-image [albumTitle]="currentComponent" [imageArray]="currentComponentImageArray"
+                *ngSwitchCase="currentComponent"></app-multi-image>
+        </div>
+    </div>
+</div>

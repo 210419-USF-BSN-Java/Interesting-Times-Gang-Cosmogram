@@ -1,0 +1,17 @@
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<div class="div-navbar">
+    <nav class="nav-navbar">
+        <div>
+            <span>
+                <h2 class="h2-title">{{ title }}</h2>
+            </span>
+        </div>
+        <div class="div-button" (click)="toggleToolbar()"><i class="fas fa-bars fa-2x"></i></div>
+    </nav>
+
+    <app-toolbar (notifyNavBarTitle)="setTitle($event)" [show]="showToolbar" (giveNavbarTool)="acceptNavsTool($event)"></app-toolbar>
+</div>

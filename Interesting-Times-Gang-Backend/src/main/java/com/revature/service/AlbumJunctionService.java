@@ -1,41 +1,41 @@
 package com.revature.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.model.Album;
 import com.revature.model.AlbumJunction;
 import com.revature.repository.AlbumJunctionRepository;
 
 @Service
 public class AlbumJunctionService {
+	private AlbumJunctionRepository albumJunctRepo;
 
-	private AlbumJunctionRepository albumRepo;
-	private UserService userService;
-
-	public AlbumJunctionService() {
-
-	}
+	public AlbumJunctionService() {}
 
 	@Autowired
-	public AlbumJunctionService(AlbumJunctionRepository albumRepo, UserService userService) {
-		this.albumRepo = albumRepo;
-		this.userService = userService;
+	public AlbumJunctionService(AlbumJunctionRepository albumRepo) {
+		this.albumJunctRepo = albumRepo;
 	}
 
 	public String createAlbumJunction(Long userId, String sessionToken, Long albumId, LocalDate imageDate) {
-		try {
-//			boolean validSession = userService.isValidSession(userId, sessionToken);
-//			if (!validSession) {
-//				return "Error: AlbumJunction was not created. INVALID Session.";
-//			}
-			albumRepo.save(new AlbumJunction(albumId, imageDate));
-			return "AlbumJunction created successfully";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Error: AlbumJunction was not created";
-		}
+		return null;
 	}
 
+	public List<AlbumJunction> getAlbumJunctionsByAlbumId(Integer id) {
+		System.out.println("Album Junction Service: " + id);
+		List<AlbumJunction> juncts = albumJunctRepo.findAlbumJunctionsByAlbumId(id);
+		System.out.println("Album Junction Service: " + juncts);
+		return juncts;
+	}
+	public AlbumJunction insertIntoAlbumJunct(Integer albumId, LocalDate date) {
+		AlbumJunction albumjunct = new AlbumJunction(albumId, date);
+		return albumJunctRepo.save(albumjunct);
+	}
+	public Long removeFromAlbumJunct(Integer albumId, LocalDate date) {
+		return albumJunctRepo.deleteByAlbumIdAndImageDate(albumId, date);
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router'
@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
   password: string = "";
   message: string = "";
 
+  /* Style properties */
+  loginHeight: Number = window.innerHeight;
+
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -20,13 +23,21 @@ export class LoginComponent implements OnInit {
 
   signIn() {
     this.auth.login(this.username, this.password).subscribe(
+      // observer
       response => {
-        // this.router.navigate('dashboard') need to route somewhere? dashboard maybe
-
-
+        // console.log(response);
+        if (response === null) {
+          this.message = "Didn't work. Please Try Again!"
+        } else {
+          var num = new Number(10);
+          num = Number(response.id);
+          console.log("signin method: " + response);
+          sessionStorage.setItem("userId", response.id.toString());
+          this.router.navigate(['dashboard']); //need to route somewhere? dashboard maybe
+        }
       },
       err => {
-        console.error("Error");
+        console.error(err);
       },
       () => {
         console.log("Complete");

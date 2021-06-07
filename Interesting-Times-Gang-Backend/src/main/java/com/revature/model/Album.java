@@ -9,61 +9,61 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
-
-
 @Entity
 @Component
-@Table(name="album")
+@Table(name = "album")
 public class Album {
 	
-	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	@Column(name="album_id", unique=true, nullable=false)
+	@Id // one album id to many album junctions
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "album_id", unique = true, nullable = false)
 	private Integer albumId;
-	@Column(name="album_name", unique=true, nullable=false)
+	@Column(name = "album_name", unique = true, nullable = false)
 	private String albumName;
-	@Column(name="user_id", unique=true, nullable=false)
+	@Column(name = "user_id", unique = true, nullable = false)
 	private Integer userId;
-	
-	
-	
+
 	public Album() {
 		super();
 	}
+
 	public Album(String albumName, Integer userId) {
 		super();
 		this.albumName = albumName;
 		this.userId = userId;
 	}
+
 	public Album(Integer albumId, String albumName, Integer userId) {
 		super();
 		this.albumId = albumId;
 		this.albumName = albumName;
 		this.userId = userId;
 	}
+
 	public Integer getAlbumId() {
 		return albumId;
 	}
+
 	public void setAlbumId(Integer albumId) {
 		this.albumId = albumId;
 	}
+
 	public String getAlbumName() {
 		return albumName;
 	}
+
 	public void setAlbumName(String albumName) {
 		this.albumName = albumName;
 	}
+
 	public Integer getUserId() {
 		return userId;
 	}
+
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,6 +73,7 @@ public class Album {
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -99,6 +100,7 @@ public class Album {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Album [albumId=" + albumId + ", albumName=" + albumName + ", userId=" + userId + "]";

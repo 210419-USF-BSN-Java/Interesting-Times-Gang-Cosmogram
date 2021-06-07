@@ -3,6 +3,7 @@ package com.revature.model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class FrontAlbum {
 	
 	// Unknown
 	@Column(name="images", unique=true, nullable=false)
+    @ElementCollection(targetClass=Image.class)
 	private List<Image> images;
 
 	

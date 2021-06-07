@@ -1,0 +1,16 @@
+.div-tool-content {
+    height: 7em;
+    overflow-y: scroll;
+}
+.div-content:hover{
+    opacity: 0.5;
+}
+ /* Hide scrollbar for Chrome, Safari and Opera */
+.div-tool-content::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.div-tool-content {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}

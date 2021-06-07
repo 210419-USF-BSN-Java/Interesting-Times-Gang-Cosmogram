@@ -1,0 +1,14 @@
+<div *ngIf="show" class="div-toolbar">
+    <ul>
+        <li>
+            <!-- can change toolbox by typing class name of --tools.ts -->
+            <app-toolbox (tellToolBar)="selectToolbox($event)" (giveToolbarTool)="acceptTool($event)" [selectedToolbox]="selectedToolbox" [title]="'Search'"
+                [toolbox]="searchToolbox"></app-toolbox>
+        </li>
+        <li>
+            <app-toolbox (tellToolBar)="selectToolbox($event)" (giveToolbarTool)="acceptTool($event)" [selectedToolbox]="selectedToolbox" [title]="'Albums'"
+                [toolbox]="albumsToolbox"></app-toolbox>
+        </li>
+    </ul>
+    <app-logout></app-logout>
+</div>

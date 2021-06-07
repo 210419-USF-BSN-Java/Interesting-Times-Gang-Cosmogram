@@ -1,0 +1,49 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<div>
+    <div class="main"> 
+      <div class="img-frame" *ngIf="image">
+        <img src={{image.hdurl}}/>
+      </div>
+      <br>
+      <div class="row" *ngIf="image">
+        <div class="col-sm-3">
+            <span [ngClass]="hoveredRating >= 1 ? 'fa fa-star checked' : 'fa fa-star'" (mouseenter)="mouseEnter(1)" (mouseleave)="resetHoveredRating()" (click)="setFinalRating(1)"></span>
+            <span [ngClass]="hoveredRating >= 2 ? 'fa fa-star checked' : 'fa fa-star'" (mouseenter)="mouseEnter(2)" (mouseleave)="resetHoveredRating()" (click)="setFinalRating(2)"></span>
+            <span [ngClass]="hoveredRating >= 3 ? 'fa fa-star checked' : 'fa fa-star'" (mouseenter)="mouseEnter(3)" (mouseleave)="resetHoveredRating()" (click)="setFinalRating(3)"></span>
+            <span [ngClass]="hoveredRating >= 4 ? 'fa fa-star checked' : 'fa fa-star'" (mouseenter)="mouseEnter(4)" (mouseleave)="resetHoveredRating()" (click)="setFinalRating(4)"></span>
+            <span [ngClass]="hoveredRating >= 5 ? 'fa fa-star checked' : 'fa fa-star'" (mouseenter)="mouseEnter(5)" (mouseleave)="resetHoveredRating()" (click)="setFinalRating(5)"></span>
+            <br>
+            <br>
+
+            <div class="dropdown" (mouseleave)="hideAlbum()">
+              <button id="album" class="dropbtn" (mouseenter)="showAlbum()">add to album</button>
+              <div id="album-dropdown" class="dropdown-content" [ngStyle]="{'display': dropdownAlbum}">
+                <a href="#" *ngFor="let album of albums" (click)="addToAlbum(album.name)">{{ album.name }}</a>
+              </div>
+            </div>
+
+            <div class="dropdown" (mouseleave)="hideTag()" *ngIf="userRole==2">
+            <!--add *ngIf="user.roleId=2" or similar to above tag-->
+              <br>
+              <button id="tag" class="dropbtn" (mouseenter)="showTag()">add tag</button>
+              <div id="tag-dropdown" class="dropdown-content" [ngStyle]="{'display': dropdownTag}">
+                <a href="#" *ngFor="let tag of tags" (click)="addTag(tag.name)">{{ tag.name }}</a>
+              </div>
+            </div>
+
+        </div>
+        <div class="col-sm-9 right">
+          <h1>{{ image.date.slice(0, 10) | date }} - {{ image.title }}</h1>
+        </div>
+      </div>
+      <br>
+      <div class="alert alert-primary center" role="alert" [innerHtml]="alertStr" *ngIf="image"></div>
+      <p *ngIf="image">{{ image.explanation }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</div>

@@ -9,11 +9,6 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-/**
- * 
- * @author teresafitzgerald
- *
- */
 @Entity
 @Component
 @Table(name = "tag")
@@ -23,7 +18,6 @@ public class Tag {
 	@Column(name = "tag_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long tagId;
-
 	@Column(name = "tag_name", unique = true, nullable = false)
 	private String tagName;
 

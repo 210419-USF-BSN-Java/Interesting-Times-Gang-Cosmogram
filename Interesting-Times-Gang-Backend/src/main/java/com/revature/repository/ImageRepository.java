@@ -1,4 +1,4 @@
-///*
+//
 package com.revature.repository;
 
 import java.sql.Date;
@@ -14,4 +14,4 @@ import com.revature.model.Image;
 public interface ImageRepository extends JpaRepository<Image, Long>{
 	public Image findImageByDate(Date date);
 }
-//*/
+//

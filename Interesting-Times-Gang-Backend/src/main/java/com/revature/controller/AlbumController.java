@@ -1,69 +1,104 @@
 ///*
 package com.revature.controller;
 
-import java.util.LinkedHashMap;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Album;
+import com.revature.model.AlbumJsonModel;
+import com.revature.model.AlbumJunction;
+import com.revature.service.AlbumJunctionService;
 import com.revature.service.AlbumService;
 
 @RestController
-@RequestMapping(value="/album")
+@RequestMapping(value = "/album")
+@CrossOrigin(origins = "*")
 public class AlbumController {
-	
+
 	private AlbumService albumServ;
-	
-	public AlbumController(AlbumService serv) {
+
+	private AlbumJunctionService albumJunctServ;
+
+	@Autowired
+	public AlbumController(AlbumService serv, AlbumJunctionService serv2) {
 		this.albumServ = serv;
-	}
-	
-	// Get all albums from a specific user
-	// Will just need a user id
-	@GetMapping(value="/")
-	public ResponseEntity<Album> getAlbumsByUserId(@RequestBody Integer id){
-
-		//1 Use the userId to get all of the Albums with that id
-		List<Album> i = albumServ.getAlbumsByUserId(id);
-
-		//2 Use the ids in the above list to return all image dates using the AlbumJunction table
-
-		//3 Use those dates to retrieve all of the JSON image objects from the API
-
-		//4 Use some form of nested loop to append images to the appropriate FrontAlbum
-
-		//5 Convert that FrontAlbum into a JSON and send it to the front
-		
-		return null;
+		this.albumJunctServ = serv2;
 	}
 
-	// Create an album
-	// Will only require an album name
-	@PostMapping(value="/create")
-	public ResponseEntity<Album> createAlbum(@RequestBody String name){
-		
-		return null;
+	@GetMapping(value = "/")
+	public ResponseEntity<List<AlbumJsonModel>> getAlbumsByUserId(@RequestParam Integer userId) {
+		System.out.println(userId);
+		// 1 Use the userId to get all of the Albums with that id
+
+		List<AlbumJsonModel> ajmList = new ArrayList<>();
+
+		List<Album> albums = albumServ.getAlbumsByUserId(userId);
+		System.out.println(albums);
+
+		// cycles through the albums by user id
+		for (Album a : albums) {
+			AlbumJsonModel ajm = new AlbumJsonModel();
+			ajm.setAlbum(a);
+			List<LocalDate> dates = new ArrayList<>();
+			List<AlbumJunction> albumJuncs = albumJunctServ.getAlbumJunctionsByAlbumId(a.getAlbumId());
+
+			// cycle through album junctions to find correct albums according to current
+			// album a
+			// adds date
+			for (AlbumJunction aj : albumJuncs) {
+				if (aj.getAlbumId().equals(a.getAlbumId())) {
+					dates.add(aj.getImageDate());
+				}
+			}
+
+			ajm.setImageDates(dates);
+			ajmList.add(ajm);
+		}
+
+		return new ResponseEntity<List<AlbumJsonModel>>(ajmList, HttpStatus.OK);
 	}
 
-	// Insert a new photo into a specific album
-	// Will require an album id as well as all of the information about the image
-	@PostMapping(value="/insert")
-	public ResponseEntity<Album> addToAlbum(@RequestBody LinkedHashMap<String, String> map){
+	@PostMapping(value = "/create")
+	public ResponseEntity<Album> createAlbum(@RequestParam String name, @RequestParam Integer userId) {
+		albumServ.createAlbum(name, userId);
 		
-		return null;
+		return new ResponseEntity<Album>(HttpStatus.CREATED);
 	}
-	// Delete a photo from a specific album
-	// Will just need the image date and the album id
-	@PostMapping(value="/remove")
-	public ResponseEntity<Album> removeFromAlbum(@RequestBody LinkedHashMap<String, String> map){
+
+	@PostMapping(value = "/insert")
+	public ResponseEntity<Album> addToAlbum(@RequestParam Integer albumId, @RequestParam String date) {
 		
-		return null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		//convert String to LocalDate
+		LocalDate localDate = LocalDate.parse(date, formatter);
+		
+		albumJunctServ.insertIntoAlbumJunct(albumId, localDate);
+		
+		return new ResponseEntity<Album>(HttpStatus.CREATED);
+	}
+
+	@PostMapping(value = "/remove")
+	public ResponseEntity<Album> removeFromAlbum(@RequestParam Integer albumId, @RequestParam String date) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		//convert String to LocalDate
+		LocalDate localDate = LocalDate.parse(date, formatter);
+
+		Long albumJunct = albumJunctServ.removeFromAlbumJunct(albumId, localDate);
+		
+		return new ResponseEntity<Album>(HttpStatus.OK);
 	}
 }
 //*/

@@ -4,6 +4,11 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -13,27 +18,43 @@ import org.springframework.stereotype.Component;
 @Table(name = "album_junction")
 public class AlbumJunction {
 
-	@Column(name = "album_id")
-	private Long albumId;
-
-	@Column(name = "image_id")
+	@Id
+	@Column(name = "album_junct_id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name = "album_id", unique = true, nullable = false)
+	private Integer albumId;
+	@Column(name = "image_date", unique = true, nullable = false)
 	private LocalDate imageDate;
 
 	public AlbumJunction() {
 		super();
 	}
-
-	public AlbumJunction(Long albumId, LocalDate imageDate) {
+	public AlbumJunction(Integer albumId, LocalDate imageDate) {
 		super();
 		this.albumId = albumId;
 		this.imageDate = imageDate;
 	}
+	public AlbumJunction(Integer id, Integer albumId, LocalDate imageDate) {
+		super();
+		this.id = id;
+		this.albumId = albumId;
+		this.imageDate = imageDate;
+	}
 
-	public Long getAlbumId() {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getAlbumId() {
 		return albumId;
 	}
 
-	public void setAlbumId(Long albumId) {
+	public void setAlbumId(Integer albumId) {
 		this.albumId = albumId;
 	}
 

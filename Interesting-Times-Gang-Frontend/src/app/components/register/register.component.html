@@ -1,0 +1,49 @@
+<div class="div-main-outter-wrapper" [style.height.px] = "height">
+    <div class="div-main-inner-wrapper">
+        <h1>Register with Cosmogram</h1>
+        <form (ngSubmit)="register()" #registerForm="ngForm">
+            <div class="form-group">
+                <label for="firstname">First Name </label>
+                <br>
+                <input type="text" [(ngModel)]="firstname" class="form-control" id="firstname" name="firstname" placeholder="firstname"
+                    required>
+            </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="lastname">Last Name </label>
+                <br>
+                <input type="text" [(ngModel)]="lastname" class="form-control" id="lastname" name="lastname" placeholder="lastname" required>
+            </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="username">Username </label>
+                <br>
+                <input type="text" [(ngModel)]="username" class="form-control" id="username" name="username" placeholder="username" required>
+            </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="password">Password </label>
+                <br>
+                <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password" placeholder="password"
+                    required>
+            </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="password2">Confirm Password </label>
+                <br>
+                <input type="password" [(ngModel)]="password2" class="form-control" id="password2" name="password2" placeholder="password2"
+                    required>
+            </div>
+            <br>
+            
+
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+        <h3>{{ message }}</h3>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.div-toolbar {
+    display: relative;
+    z-index: 100;
+
+    padding-top: 2em;
+
+    width: 15em;
+    height: 25em;
+
+    background-color: #a9d5f4;
+
+    border: 3px solid #1d1135;
+    border-top: none;
+
+    top: 13em;
+    right: 1em;
+    position: absolute;
+
+    text-align: center;
+}
+.div-toolbar h3:hover {
+    cursor: default;
+}
+.div-toolbar ul{
+    padding: 0px;
+}
+.div-toolbar ul li{
+    list-style: none;
+}
+.div-toolbar ul li:hover{
+    cursor: pointer;
+    list-style: none;
+}

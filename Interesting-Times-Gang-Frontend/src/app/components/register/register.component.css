@@ -1,0 +1,29 @@
+.div-main-outter-wrapper {
+    height: auto;
+    max-width: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+
+    background-color: #1d1135;
+
+    /* padding: 2em; */
+}
+.div-main-inner-wrapper {
+    grid-row: 1;
+    grid-column: 1;
+
+    height: 30em;
+    width: 20em;
+
+    background-color: #a9d5f4;
+    border: 5px solid #1d1135;
+
+    text-align: center;
+
+    justify-self: center;
+    align-self: center;
+
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+}

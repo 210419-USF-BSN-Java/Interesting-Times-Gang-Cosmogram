@@ -1,0 +1,15 @@
+.main {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+.btn-success {
+    justify-self: center;
+    background-color: #83c1ed;
+    border: 5px solid #63b3ed;
+
+    opacity: 0.8;
+}
+btn-success:hover {
+    opacity: 1;
+}

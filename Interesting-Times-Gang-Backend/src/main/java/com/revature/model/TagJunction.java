@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -13,6 +16,11 @@ import org.springframework.stereotype.Component;
 @Table(name = "tag_junction")
 public class TagJunction {
 
+	@Id
+	@Column(name = "tj_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
 	@Column(name = "tag_id")
 	private Long tagId;
 

@@ -13,16 +13,21 @@ import com.revature.repository.AlbumRepository;
 public class AlbumService {
 	private AlbumRepository albumRepo;
 
-	public AlbumService() {
-		
-	}
+	public AlbumService() {}
+
 	@Autowired
 	public AlbumService(AlbumRepository repo) {
 		this.albumRepo = repo;
 	}
+
 	public List<Album> getAlbumsByUserId(Integer id) {
 		List<Album> a = albumRepo.findAlbumsByUserId(id);
 		return a;
+	}
+
+	public Album createAlbum(String albumName, Integer userId) {
+		Album album = new Album(albumName, userId);
+		return albumRepo.save(album);
 	}
 }
 //*/

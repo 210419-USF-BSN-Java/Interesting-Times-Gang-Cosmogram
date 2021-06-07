@@ -8,19 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
-/**
- * 
- * @author teresafitzgerald
- *
- */
 @Entity
 @Component
-@Table(name = "spaceapi_user")
+@Table(name = "cosmo_user")
 public class User {
 
 	@Id
-	@Column(name = "userid")
+	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 

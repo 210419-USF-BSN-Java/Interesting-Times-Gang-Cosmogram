@@ -1,0 +1,30 @@
+<div class="div-update-outter-wrapper">    
+    <h1>Update Your User Info</h1>
+    <form (ngSubmit)="update()" #updateForm="ngForm">
+        <div class="form-group">
+            <label for="firstname"><span><strong>First Name: </strong></span> </label>
+            <input type="text" [(ngModel)]="user.firstName" class="form-control" id="firstname" name="firstName" placeholder="firstname"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname"><span><strong>Last Name: </strong></span> </label>
+            <input type="text" [(ngModel)]="user.lastName" class="form-control" id="lastname" name="lastName" placeholder="lastname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="username"><span><strong>Username: </strong></span> </label>
+            <input type="text" [(ngModel)]="user.username" class="form-control" id="username" name="username" placeholder="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password"><span><strong>Password: </strong></span> </label>
+            <input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password" placeholder="password"
+                required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+    <h3>{{ message }}</h3>
+</div>

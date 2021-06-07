@@ -1,10 +1,20 @@
-<h2>Login</h2>
-<form>
-    <label for="username" >Username: </label>
-    <input type="text" [(ngModel)]="username" id="username" placeholder="username">
+<div class="div-body">
+    <div class="div-login-wrapper" [style.height.px] = "loginHeight">
+        <div class="div-login-inner-wrapper">
+            <h1 class="h1-title"> Log in to your Cosmogram!</h1>
+            <form>
+                <label for="username">Username: </label>
+                <input type="text" [(ngModel)]="username" name="username" id="username" placeholder="username" required><br><br>
 
-    <label for="password" >Password: </label>
-    <input type="password" [(ngModel)]="password" id="password" placeholder="password">
+                <label for="password">Password: </label>
+                <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="password" required><br><br>
 
-    <button (click)="signIn()">Sign In</button>
-</form>
+                <button class="button-sign-in" type="button" (click)="signIn()">Sign In</button>
+            </form>
+
+            <h3 class="h3-register" routerLink="/register">Register Here!</h3>
+
+            <h3 [(ngModel)]="message">{{ message }}</h3>
+        </div>
+    </div>
+</div>

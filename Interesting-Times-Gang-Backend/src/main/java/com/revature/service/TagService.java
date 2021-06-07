@@ -1,16 +1,13 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Tag;
 import com.revature.repository.TagRepository;
 
-/**
- * 
- * @author teresafitzgerald
- *
- */
 @Service
 public class TagService {
 
@@ -27,21 +24,17 @@ public class TagService {
 		this.userService = userService;
 	}
 
-	public Tag createTag(String sessionToken, String tagName) {
+	public String createTag(String tagName) {
 		try {
-//			boolean validSession = userService.isValidSession(userId, sessionToken);
-//			if (!validSession) {
-//				return "Error: Tag was not created. INVALID Session.";
-//			}
 			Tag tag = new Tag(tagName);
 			tagRepo.save(tag);
-			return tag;
-//			return "Tag created successfully";
+			return "Tag created successfully";
 		} catch (Exception e) {
 			e.printStackTrace();
-//			return "Error: Tag was not created";
-			return null;
+			return "Failed to create tag";
 		}
 	}
-
+	public List<Tag> getAll() {
+		return tagRepo.findAll();
+	}
 }
