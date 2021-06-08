@@ -7,6 +7,7 @@ Inspired by the cosmos and NASA’s incredible imagery of our planets and solar 
 
 ## Getting Started
 ### The application is hosted on a an EC2 instance and will be available to be viewed there.
+http://cosmofrontend.s3-website-us-east-1.amazonaws.com/
 
 
 ## Features
