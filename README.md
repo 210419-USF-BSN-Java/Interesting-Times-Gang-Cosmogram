@@ -46,3 +46,5 @@ Inspired by the cosmos and NASA’s incredible imagery of our planets and solar 
 
 
 ## Notes and ToDo
+##### The API is completed, only the front end components used to communicate via it to the service are needed to be implemented
+##### These incomplete user stories include: favorite photos, rate photos, add photos to album, and the moderator story, tag photo
