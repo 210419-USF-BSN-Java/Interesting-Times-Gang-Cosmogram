@@ -9,9 +9,9 @@ Inspired by the cosmos and NASA’s incredible imagery of our planets and solar 
 ### The application is hosted on an EC2 instance and will be available to be viewed there.
 
 ### The application can be run locally by downloading the required files and software
-##### 1 Pull in both the front and backend project directories
-##### 2 Build and launch the backend as a Spring application running on a Tomcat server
-##### 3 Build and launch the frontend as an Angular project from the browers
+##### 1 - Pull in both the front and backend project directories
+##### 2 - Build and launch the backend as a Spring application running on a Tomcat server
+##### 3 - Build and launch the frontend as an Angular project from the browers
 
 ## Features
 ### Users can
